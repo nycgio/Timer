@@ -4,13 +4,14 @@ class Timer {
         this.startButton = startButton;
         this.pauseButton = pauseButton;
 
+        this.timeLeft = 30;
+
         this.startButton.addEventListener('click', this.start);
         this.pauseButton.addEventListener('click', this.pause);
     }
 
 
     start = () => {
-        // start the tick
         this.tick();
         this.interval = setInterval(this.tick, 1000);
     }
@@ -20,10 +21,15 @@ class Timer {
     }
 
     tick = () => {
+        this.timeRemaining = this.timeRemaining - 1;
     }
 
-    importantMethodToCall(){
-        console.log('Method called')
+    get timeRemaining(){
+        return parseFloat(this.durationInput.value);
+    }
+
+    set timeRemaining(time){
+        this.durationInput.value = time;
     }
 }
 
